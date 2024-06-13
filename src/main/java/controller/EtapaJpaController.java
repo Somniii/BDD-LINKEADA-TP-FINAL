@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import seahub.torneo.logica.Etapa;
@@ -26,8 +27,14 @@ public class EtapaJpaController implements Serializable {
     public EtapaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    private EntityManagerFactory emf = null;
 
+    public EtapaJpaController(){
+        emf =  Persistence.createEntityManagerFactory("torneoBDDJPAPU");
+    }
+    
+    
+    private EntityManagerFactory emf = null;
+            
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
